@@ -12,11 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-''' App Engine data model for Emergecny Blood Request Application
-    Some parts of this code was taken from Rietveld application
-    http://code.google.com/p/rietveld/
 '''
-
+  App Engine data model for Emergecny Blood Request Application
+'''
 
 # Python imports
 import logging
@@ -25,30 +23,6 @@ import re
 # AppEngine imports
 from google.appengine.ext import db
 from google.appengine.api import memcache
-
-
-### GQL query cache ###
-_query_cache = {}
-
-def gql(cls, clause, *args, **kwds):
-  """Return a query object, from the cache if possible.
-
-  Args:
-    cls: a db.Model subclass.
-    clause: a query clause, e.g. 'WHERE draft = TRUE'.
-    *args, **kwds: positional and keyword arguments to be bound to the query.
-
-  Returns:
-    A db.GqlQuery instance corresponding to the query with *args and
-    **kwds bound to the query.
-  """
-  query_string = 'SELECT * FROM %s %s' % (cls.kind(), clause)
-  query = _query_cache.get(query_string)
-  if query is None:
-    _query_cache[query_string] = query = db.GqlQuery(query_string)
-  query.bind(*args, **kwds)
-  return query
-
 
 class Hospital(db.Model):
     name = db.StringProperty(required=True)
