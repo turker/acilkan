@@ -1,0 +1,14 @@
+<html>
+  <body>
+
+    <form action="{%url acilkan.views.new%}"
+          method="post" enctype="multipart/form-data" id="create-form">
+    <table>
+    {{form}}
+    <tr><td><input type="submit" value="Create Issue"></td></tr>
+    </table>
+    </form>
+
+  </body>
+</html>
+

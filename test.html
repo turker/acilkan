@@ -1,0 +1,28 @@
+<html>
+  <body>
+    {% for post in posts %}
+      {% if post.author %}
+        <b>{{ post.author.nickname }}</b> wrote:
+      {% else %}
+       An anonymous person wrote:
+      {% endif %}
+      <blockquote>{{ post.content|escape }}</blockquote>
+    {% endfor %}
+    {% for btype in btypes %}
+        <b>{{ btype.type }}</b>
+    {% endfor %}
+    {{ filtertype }}
+
+    <form action="/duyuru" method="post">
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><input type="submit" value="Duyur"></div>
+    </form>
+
+    <form action="/listele" method="post">
+      <div><input type="submit" name="btype" value="Kan Grubuna Gore Listele"></div>
+    </form>
+    <a href="{{ url }}">{{ url_linktext }}</a>
+
+  </body>
+</html>
+
