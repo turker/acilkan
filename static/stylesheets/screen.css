@@ -1,0 +1,81 @@
+-------------------------------------------------------------- */
+
+@import "lib/reset.css";
+@import "lib/typography.css";
+@import "lib/forms.css";
+@import "lib/plugins/tabs.css";
+
+
+/* Header
+-------------------------------------------------------------- */
+
+#header { margin-top: 20px; }
+
+/* Page */
+
+#page { margin: 0 auto; width: 950px}
+
+/* Body
+-------------------------------------------------------------- */
+
+#body { margin-top: 20px;}
+
+/* Form
+--------------------------------------------------------------*/
+fieldset#field_duyuru {border: none;background-color: #820505;padding:8px 25px 18px 15px;}
+
+form#duyuru {
+  position: relative;
+  /*margin: 0 50px;*/
+}
+
+div#hospital_name,
+div#hospital_city,
+div#blood_type,
+div#patient_name,
+div#phone_number {
+  position:relative;
+  float:left;
+  margin-right:10px;
+}
+
+div#submit {
+  margin-top: 18px;
+}
+
+label.overlabel {
+  display: block;
+  color:#EEE;
+  font-size: 1em;
+}
+
+input:focus {
+	border: 2px solid #BF5050;
+}
+
+/* Posts 
+----------------------------------------------------------*/
+#posts {
+  float:left;
+  margin-right:30px;
+  width:700px;
+}
+
+td {
+	border-bottom: 1px solid #eee;
+	background: #fff;
+	padding: 16px 6px 6px 12px;
+	color: #777;
+	margin-top: 10px;
+}
+
+
+
+/* Sidebar
+----------------------------------------------------------*/
+#sidebar {
+  float:left;
+  width:200px;
+  border-left: 2px solid #eee;
+}
+
