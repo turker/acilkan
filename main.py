@@ -79,7 +79,7 @@ class Utility():
 
     #TODO: May need to check the existance of the exact same request
 
-       logging.debug('adding new request by %s' % req_author.nickname)
+       logging.debug('adding new request by ')
        brequest = model.BloodRequest(author=req_author,
                                       hospital=req_hospital,
                                       blood = req_blood,
@@ -211,6 +211,8 @@ class NewRequestHandler(webapp.RequestHandler):
         util = Utility()
         if users.get_current_user():
             req_author = users.get_current_user()
+        else:
+            req_author = None
 
         hospital_name = self.request.get('hospital_name')
         hospital_city = self.request.get('hospital_city')

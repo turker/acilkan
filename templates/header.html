@@ -4,12 +4,12 @@
 <head>
 <script type="text/javascript" src="static/jquery-1.2.6.pack.js"></script> 
 <script type="text/javascript" src="static/jquery.form.js"></script> 
-
+<link type="text/css" rel="stylesheet" href="static/stylesheets/screen.css">
 <script type="text/javascript"> 
     // wait for the DOM to be loaded 
     $(document).ready(function() { 
         var options = { 
-                target:        '#output1',   // target element(s) to be updated with server response 
+                target:        '#posts',   // target element(s) to be updated with server response 
                 beforeSubmit:  showRequest,  // pre-submit callback 
                 success:       showResponse  // post-submit callback 
          
@@ -32,7 +32,7 @@
   <title>
     {{ title|escape }}
   </title>
-  <!--<link type="text/css" rel="stylesheet" href="/static/styles.css">-->
+
   <!--<script type="text/javascript" src="/static/script.js"></script>-->
 
 

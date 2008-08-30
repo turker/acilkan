@@ -2,47 +2,76 @@
 
 </head>
 <body>
-    <h2><a href=".">Acil Kan Duyurusu Yapin</a></h2> 
+<div id="page">
+  <div id="header">
+    <h1><a href=".">Acil Kan Duyurulari</a></h1>
+  </div>
+  
+  <div id="body" class="wrapper">  
     
     <a href="{{ url }}">{{ url_linktext }}</a>
 
  <form id="duyuru" action="/duyuru" method="post">
-      <div>
-        <textarea name="hospital_name" rows="1"></textarea> 
-        <textarea name="hospital_city" rows="1" cols="10"></textarea>  
-        <textarea name="blood_type" rows="1" cols="5"></textarea>  
-        <textarea name="patient_name" rows="1" cols="10"></textarea>  
-        <textarea name="phone_number" rows="1" cols="10"></textarea> 
-        <input type="submit" value="Duyur">
+    <fieldset id="field_duyuru">
+      <div id="hospital_name">
+        <label for="hospital_name" class="overlabel">Hastahane</label>
+        <input id="hospital_name" title="Hastahane Ismi" tabIndex="1" type="text" name="hospital_name" />
+      </div>
+       <div id="hospital_city">
+          <label for="hospital_city" class="overlabel">Sehir</label>
+          <input type="text" title="Sehir" id="hospital_city" name="hospital_city" tabIndex="2" />  
        </div>
+       <div id="blood_type">
+          <label for="blood_type" class="overlabel">Kan Grubu</label>
+          <input type="text" title="Kan Grubu" id="kan_grubu" name="blood_type" size="10" maxlength="3" tabIndex="3" />  
+       </div>
+       <div id="patient_name">
+          <label for="patient_name" class="overlabel">Hasta Adi</label>
+          <input type="text" title="Hasta Ismi" id="hasta_ismi" name="patient_name" tabIndex="4" />  
+       </div>
+       <div id="phone_number">
+          <label for="phone_number" class="overlabel">Telefon No</label>
+          <input type="text" title="Telefon No" id="telefon_no" name="phone_number" tabIndex="5" />  
+       </div>
+       <div id="submit">
+          <input type="submit" name="submit" value="Duyur" tabIndex="6">
+       </div>
+     </fieldset>
 
  </form>
 
- <div id="output1">
-
+<div id="posts">
+  <table id="results" class="main" cellspacing="0">
+  <tbody>
  {% if not filter_byhospital %}
     {% if not filter_byblood %}     
         <h2>Tum Acil Kan Duyurulari</h2>
         {% for req in reqs %}
-        <pre><a href="?hospital={{ req.hospital.name|escape }}">{{ req.hospital.name|escape}}</a>  <a href="?city={{ req.hospital.city|escape }}">{{ req.hospital.city|escape }}</a>  <a href="?bloodtype={{ req.blood.type|escape}}">{{ req.blood.type|escape }}</a> {{ req.patient_name|escape }}   {{ req.phone_number|escape}}</pre>
+          <tr id="request">
+          <td class="city"><a href="?city={{ req.hospital.city|escape }}">{{ req.hospital.city|escape }}</a></td> 
+          <td class="hospital"><a href="?hospital={{ req.hospital.name|escape }}">{{ req.hospital.name|escape}}</a></td>   
+          <td class="type"><a href="?bloodtype={{ req.blood.type|escape}}">{{ req.blood.type|escape }}</a></td> 
+          <td class="patient">{{ req.patient_name|escape }}</td> <td class="contact">{{ req.phone_number|escape}}</td>
+          
+          </tr>
         {% endfor %}
     {% endif %}
  {% endif %}
-
+ </tbody>
+ </table>
  
  {% if filter_byhospital %} 
     {% if not hospital_city %}
         {% if hospital_name %}
-        <h2>Acil Kan Duyurulari ( {{ hospital_name }} Hastahanesi )</h2>
+          <h2>Acil Kan Duyurulari ( {{ hospital_name }} Hastahanesi )</h2>
 
-        {% for hosp in hospitals %}
-            {% for r in hosp.requests %}
-                <pre>{{ r.hospital.name|escape }} <a href="{{curr_url}}&city={{ r.hospital.city|escape }}">{{r.hospital.city|escape}}</a>  {{ r.blood.type|escape }} {{ r.patient_name|escape }}   {{ r.phone_number|escape}}</pre>
-            {% endfor %}
-        {% endfor %}
+          {% for hosp in hospitals %}
+              {% for r in hosp.requests %}
+                  <pre>{{ r.hospital.name|escape }} <a href="{{curr_url}}&city={{ r.hospital.city|escape }}">{{r.hospital.city|escape}}</a>  {{ r.blood.type|escape }} {{ r.patient_name|escape }}   {{ r.phone_number|escape}}</pre>
+              {% endfor %}
+          {% endfor %}
         {% endif %}
-
-  {% endif %}
+    {% endif %}
     
     {% if hospital_city %}
         {% if hospital_name %}
@@ -54,20 +83,18 @@
             {% endfor %}
         {% endif %}
     {% endif %}
- 
+   
      {% if not hospital_name %}
         {% if hospital_city %}
             <h2>Acil Kan Duyurulari ( {{ hospital_city }} )</h2>
             {% for hosp in hospitals %}
-             {% for r in hosp.requests %}
-                <pre><a href="{{curr_url}}&hospital={{ r.hospital.name|escape }}">{{r.hospital.name|escape}}</a> {{r.hospital.city|escape}} {{ r.blood.type|escape }} {{ r.patient_name|escape }}   {{ r.phone_number|escape}}</pre>
-            {% endfor %}
-            {% endfor %}
+              {% for r in hosp.requests %}
+                  <pre><a href="{{curr_url}}&hospital={{ r.hospital.name|escape }}">{{r.hospital.name|escape}}</a> {{r.hospital.city|escape}} {{ r.blood.type|escape }} {{ r.patient_name|escape }}   {{ r.phone_number|escape}}</pre>
+              {% endfor %}
+             {% endfor %}
         {% endif %}
     {% endif %}
  {% endif %}
-
-</div>
 
  {% if filter_byblood %} 
      {% for blood in bloods %}
@@ -77,5 +104,13 @@
         {% endfor %}
     {% endfor %}
  {% endif %}
+</div> <!--posts-->
+ 
+ <div id="sidebar">
+  <h3>Sidebar</h3>
+ 
+ </div><!--sidebar-->
+  </div><!--body-->
+ </div><!--page-->
 </body>
 </html>
