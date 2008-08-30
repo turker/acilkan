@@ -1,9 +1,6 @@
 -------------------------------------------------------------- */
 
-@import "lib/reset.css";
-@import "lib/typography.css";
-@import "lib/forms.css";
-@import "lib/plugins/tabs.css";
+@import "reset-fonts-grids.css";
 
 
 /* Header
@@ -13,16 +10,16 @@
 
 /* Page */
 
-#page { margin: 0 auto; width: 950px}
+#page { margin: 0 auto; width: 950px; border: 2px solid #eee;}
 
 /* Body
 -------------------------------------------------------------- */
 
-#body { margin-top: 20px;}
+#body { margin-top: 20px; }
 
 /* Form
 --------------------------------------------------------------*/
-fieldset#field_duyuru {border: none;background-color: #820505;padding:8px 25px 18px 15px;}
+fieldset#field_duyuru {border: none;padding:8px 25px 18px 15px;}
 
 form#duyuru {
   position: relative;
@@ -43,6 +40,10 @@ div#submit {
   margin-top: 18px;
 }
 
+input[type="submit"]  {
+    
+}
+
 label.overlabel {
   display: block;
   color:#EEE;
@@ -55,12 +56,6 @@ input:focus {
 
 /* Posts 
 ----------------------------------------------------------*/
-#posts {
-  float:left;
-  margin-right:30px;
-  width:700px;
-}
-
 td {
 	border-bottom: 1px solid #eee;
 	background: #fff;
@@ -73,9 +68,4 @@ td {
 
 /* Sidebar
 ----------------------------------------------------------*/
-#sidebar {
-  float:left;
-  width:200px;
-  border-left: 2px solid #eee;
-}
 
