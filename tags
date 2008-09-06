@@ -4,65 +4,36 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.7	//
+Utility	main.py	/^class Utility():$/;"	c
+parseContent	main.py	/^    def parseContent(self,request):$/;"	m	class:Utility
+isHospitalExisting	main.py	/^    def isHospitalExisting(self, entity):$/;"	m	class:Utility
+isBloodTypeExisting	main.py	/^    def isBloodTypeExisting(self, entity):$/;"	m	class:Utility
+add_hospital	main.py	/^    def add_hospital(self, hname, hcity):$/;"	m	class:Utility
+add_blood	main.py	/^    def add_blood(self, btype, req_hospital):$/;"	m	class:Utility
+add_new_request	main.py	/^    def add_new_request(self,$/;"	m	class:Utility
+get_requests	main.py	/^    def get_requests(self):$/;"	m	class:Utility
+get_hospitals	main.py	/^    def get_hospitals(self, hname=None, hcity=None):$/;"	m	class:Utility
+get_blood	main.py	/^    def get_blood(self, blood_type = None):$/;"	m	class:Utility
 AboutHandler	main.py	/^class AboutHandler(webapp.RequestHandler):$/;"	c
-Blood	acilkan/model.py	/^class Blood(db.Model):$/;"	c
-Blood	kan.py	/^class Blood(db.Model):$/;"	c
-Blood	model.py	/^class Blood(db.Model):$/;"	c
-BloodRequest	acilkan/model.py	/^class BloodRequest(db.Model):$/;"	c
-BloodRequest	kan.py	/^class BloodRequest(webapp.RequestHandler):$/;"	c
-BloodRequest	model.py	/^class BloodRequest(db.Model):$/;"	c
-Dispatcher	rest/__init__.py	/^class Dispatcher(object):$/;"	c
-Error	rest/__init__.py	/^class Error(Exception):$/;"	c
-FilterBy	kan.py	/^class FilterBy(webapp.RequestHandler):$/;"	c
-Hospital	acilkan/model.py	/^class Hospital(db.Model):$/;"	c
-Hospital	kan.py	/^class Hospital(db.Model):$/;"	c
-Hospital	model.py	/^class Hospital(db.Model):$/;"	c
-InvalidMethodName	rest/__init__.py	/^class InvalidMethodName(Error):$/;"	c
 MainHandler	main.py	/^class MainHandler(webapp.RequestHandler):$/;"	c
-MainPage	kan.py	/^class MainPage(webapp.RequestHandler):$/;"	c
-NewRequestHandler	main.py	/^class NewRequestHandler(webapp.RequestHandler):$/;"	c
-NotImplementedError	rest/__init__.py	/^class NotImplementedError(Error):$/;"	c
-Post	kan.py	/^class Post(db.Model):$/;"	c
-RequestForm	acilkan/views.py	/^class RequestForm(forms.Form):$/;"	c
-Resource	rest/__init__.py	/^class Resource(UserDict.DictMixin):$/;"	c
-ResourceModel	rest/appengine.py	/^class ResourceModel(rest.Resource, db.Expando):$/;"	c
-RestHandler	rest/appengine.py	/^class RestHandler(webapp.RequestHandler, rest.Dispatcher):$/;"	c
-Utility	kan.py	/^class Utility():$/;"	c
-__delitem__	rest/__init__.py	/^    def __delitem__(self, key):$/;"	m	class:Resource	file:
-__getitem__	rest/__init__.py	/^    def __getitem__(self, key):$/;"	m	class:Resource	file:
-__setitem__	rest/__init__.py	/^    def __setitem__(self, key, value):$/;"	m	class:Resource	file:
-child_object	rest/__init__.py	/^    def child_object(self, name):$/;"	m	class:Resource
-delete	rest/appengine.py	/^    def delete(self):$/;"	m	class:RestHandler
-deleter	rest/__init__.py	/^def deleter(func):$/;"	f
-dispatch	rest/__init__.py	/^    def dispatch(self, path, http_method, params):$/;"	m	class:Dispatcher
-dispatch_request	rest/appengine.py	/^    def dispatch_request(self):$/;"	m	class:RestHandler
-exposed_attrs	rest/__init__.py	/^    def exposed_attrs(self):$/;"	m	class:Resource
-exposed_attrs	rest/appengine.py	/^    def exposed_attrs(self):$/;"	m	class:ResourceModel
-get	kan.py	/^    def get(self):$/;"	m	class:FilterBy
-get	kan.py	/^    def get(self):$/;"	m	class:MainPage
 get	main.py	/^    def get(self):$/;"	m	class:MainHandler
-get	rest/appengine.py	/^    def get(self):$/;"	m	class:RestHandler
-getter	rest/__init__.py	/^def getter(func):$/;"	f
-gql	acilkan/model.py	/^def gql(cls, clause, *args, **kwds):$/;"	f
-gql	model.py	/^def gql(cls, clause, *args, **kwds):$/;"	f
-hidden_keys	rest/__init__.py	/^    def hidden_keys(self):$/;"	m	class:Resource
-http_get_action	rest/__init__.py	/^def http_get_action(func):$/;"	f
-http_post_action	rest/__init__.py	/^def http_post_action(func):$/;"	f
-index	acilkan/views.py	/^def index(request):$/;"	f
-isBloodTypeExisting	kan.py	/^    def isBloodTypeExisting(self, entity):$/;"	m	class:Utility
-isHospitalExisting	kan.py	/^    def isHospitalExisting(self, entity):$/;"	m	class:Utility
-keys	rest/__init__.py	/^    def keys(self):$/;"	m	class:Resource
-main	kan.py	/^def main():$/;"	f
+NewRequestHandler	main.py	/^class NewRequestHandler(webapp.RequestHandler):$/;"	c
+post	main.py	/^    def post(self):$/;"	m	class:NewRequestHandler
 main	main.py	/^def main():$/;"	f
-obj_from_path	rest/__init__.py	/^    def obj_from_path(self, path):$/;"	m	class:Dispatcher
-obj_to_html	rest/appengine.py	/^    def obj_to_html(self, obj):$/;"	m	class:RestHandler
-obj_to_xml	rest/appengine.py	/^    def obj_to_xml(self, obj, name="response"):$/;"	m	class:RestHandler
+Utility	kan.py	/^class Utility():$/;"	c
 parseContent	kan.py	/^    def parseContent(self,request):$/;"	m	class:Utility
-post	kan.py	/^    def post(self):$/;"	m	class:BloodRequest
+isHospitalExisting	kan.py	/^    def isHospitalExisting(self, entity):$/;"	m	class:Utility
+isBloodTypeExisting	kan.py	/^    def isBloodTypeExisting(self, entity):$/;"	m	class:Utility
+Post	kan.py	/^class Post(db.Model):$/;"	c
+Hospital	kan.py	/^class Hospital(db.Model):$/;"	c
+Blood	kan.py	/^class Blood(db.Model):$/;"	c
+FilterBy	kan.py	/^class FilterBy(webapp.RequestHandler):$/;"	c
 post	kan.py	/^    def post(self):$/;"	m	class:FilterBy
-post	rest/appengine.py	/^    def post(self):$/;"	m	class:RestHandler
-preserialize	rest/appengine.py	/^    def preserialize(self, obj, depth=0):$/;"	m	class:RestHandler
-put	rest/appengine.py	/^    def put(self):$/;"	m	class:RestHandler
-setter	rest/__init__.py	/^def setter(func):$/;"	f
-template_dir	rest/appengine.py	/^    def template_dir(self):$/;"	m	class:RestHandler
-translate	rest/appengine.py	/^    def translate(self, obj, depth):$/;"	m	class:RestHandler
+get	kan.py	/^    def get(self):$/;"	m	class:FilterBy
+BloodRequest	kan.py	/^class BloodRequest(webapp.RequestHandler):$/;"	c
+post	kan.py	/^    def post(self):$/;"	m	class:BloodRequest
+MainPage	kan.py	/^class MainPage(webapp.RequestHandler):$/;"	c
+get	kan.py	/^    def get(self):$/;"	m	class:MainPage
+main	kan.py	/^def main():$/;"	f
+options	static/jquery.form.js	/^    options.success = function(data, status) {$/;"	m
+fn.ajaxSubmit	static/jquery.form.js	

@@ -158,6 +158,9 @@ class MainHandler(webapp.RequestHandler):
         blood_type = self.request.get('bloodtype')
         filter_byhospital = False
         filter_byblood = False
+        namefilter = False
+        cityfilter = False
+        filteredrequest = [ ]
         if (hospital_name is not '') & (hospital_city is ''):
             #handle filtering by hospital name 
             hospitals = util.get_hospitals(hospital_name)
@@ -186,6 +189,23 @@ class MainHandler(webapp.RequestHandler):
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Giris Yap'
 
+        if (filter_byhospital) & (filter_byblood):
+            if hospital_name is not '':
+                namefilter = True
+            if hospital_city is not '':
+                cityfilter = True
+            for b in bloods:
+                for r in b.requests:
+                    if (namefilter) & (cityfilter):
+                        if r.hospital.name == hospital_name:
+                            if r.hospital.city == hospital_city:
+                                    filteredrequest.append(r)
+                    if (not namefilter) & (cityfilter):
+                        if r.hospital.city == hospital_city:
+                            filteredrequest.append(r)
+                    if (namefilter) & (not cityfilter):
+                        if r.hospital.name == hospital_name:
+                            filteredrequest.append(r)
 
         reqs = util.get_requests()
         curr_url = self.request.url 
@@ -201,6 +221,7 @@ class MainHandler(webapp.RequestHandler):
             'url_linktext': url_linktext,
             'filter_byhospital': filter_byhospital,
             'filter_byblood' : filter_byblood,
+            'filteredrequest': filteredrequest,
             'curr_url': curr_url,
             }
 
