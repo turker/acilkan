@@ -186,6 +186,7 @@ class MainHandler(webapp.RequestHandler):
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Giris Yap'
 
+
         reqs = util.get_requests()
         curr_url = self.request.url 
         template_values = {

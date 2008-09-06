@@ -2,10 +2,18 @@
 
 <body>
 <div id="doc2" class="yui-t7">
-   <div id="hd"><h1><a href=".">Acil Kan Duyurulari</a></h1></div>
+	<div id="hd">
+		<div id="header">
+			<ul id="menu">
+				<li><a href="{{url}}">{{url_linktext}}</a></li>
+				<li><a href="/hakkinda">Hakkında</a></li>
+				<li><a href="/blog">Blog</a></li>
+			</ul>
+			<h1><a href=".">Acil Kan Duyuruları</a></h1>
+		</div>
+	</div>
     <div id="bd">
 	    <div class="yui-g">
-	        <a href="{{ url }}">{{ url_linktext }}</a>
 	
             <div id="duyuruform">
                  <form id="duyuru" action="/duyuru" method="post">
@@ -15,7 +23,7 @@
                         <input id="hospital_name" title="Hastahane Ismi" tabIndex="1" type="text" name="hospital_name" />
                       </div>
                        <div id="hospital_city">
-                          <label for="hospital_city" class="overlabel">Sehir</label>
+                          <label for="hospital_city" class="overlabel">Şehir</label>
                           <input type="text" title="Sehir" id="hospital_city" name="hospital_city" tabIndex="2" />  
                        </div>
                        <div id="blood_type">
@@ -23,7 +31,7 @@
                           <input type="text" title="Kan Grubu" id="kan_grubu" name="blood_type" size="10" maxlength="3" tabIndex="3" />  
                        </div>
                        <div id="patient_name">
-                          <label for="patient_name" class="overlabel">Hasta Adi</label>
+                          <label for="patient_name" class="overlabel">Hasta Adı</label>
                           <input type="text" title="Hasta Ismi" id="hasta_ismi" name="patient_name" tabIndex="4" />  
                        </div>
                        <div id="phone_number">
@@ -41,10 +49,21 @@
         <div class="yui-ge">
             <div class="yui-u first">
                 <div class="posts">
+		    <!-- NO FILTER-->
                      {% if not filter_byhospital %}
                         {% if not filter_byblood %}     
                             <h2>Tum Acil Kan Duyurulari</h2>
                         <table id="results" class="main" cellspacing="0">
+	  		      <thead>                           
+				    <tr>
+					    <th scope="col" abbr="Sehir">Şehir</th>
+					    <th scope="col" abbr="Hastahane">Hastahane</th>
+					    <th scope="col" abbr="Kan Grubu">Kan</th>
+					    <th scope="col" abbr="Hasta">Hasta</th>
+					    <th scope="col" abbr="Telefon">Telefon</th>
+					    <th scope="col"></th>
+				    </tr>
+	                      </thead>
                               <tbody>
 
                             {% for req in reqs %}
@@ -52,7 +71,8 @@
                               <td class="city"><a href="?city={{ req.hospital.city|escape }}">{{ req.hospital.city|escape }}</a></td> 
                               <td class="hospital"><a href="?hospital={{ req.hospital.name|escape }}">{{ req.hospital.name|escape}}</a></td>   
                               <td class="type"><a href="?bloodtype={{ req.blood.type|escape}}">{{ req.blood.type|escape }}</a></td> 
-                              <td class="patient">{{ req.patient_name|escape }}</td> <td class="contact">{{ req.phone_number|escape}}</td>
+			      <td class="patient">{{ req.patient_name|escape }}</td> <td class="contact">{{ req.phone_number|escape}}</td>
+			      <td class="extra">extra extra extra</td>
                               
                               </tr>
                             {% endfor %}
@@ -61,37 +81,70 @@
 
                         {% endif %}
                      {% endif %}
-                     
-                     {% if filter_byhospital %} 
-                        {% if not hospital_city %}
-                            {% if hospital_name %}
+
+		     <!-- ONLY HOSPITAL FILTER -->
+		     {% if filter_byhospital %} 
+			{% if not filter_byblood %}
+                            {% if not hospital_city %}
+				    {% if hospital_name %}
+
                               <h2>Acil Kan Duyurulari ( {{ hospital_name }} Hastahanesi )</h2>
                         <table id="results" class="main" cellspacing="0">
+	  		      <thead>                           
+				    <tr>
+					    <th scope="col" abbr="Sehir">Şehir</th>
+					    <th scope="col" abbr="Hastahane">Hastahane</th>
+					    <th scope="col" abbr="Kan Grubu">Kan</th>
+					    <th scope="col" abbr="Hasta">Hasta</th>
+					    <th scope="col" abbr="Telefon">Telefon</th>
+					    <th scope="col"></th>
+				    </tr>
+	                      </thead>
                               <tbody>
 
                               {% for hosp in hospitals %}
                                   {% for r in hosp.requests %}
                                   <tr id="request">
-                                      <td class="city"><a href="{{curr_url}}&city={{ r.hospital.city|escape }}">{{ r.hospital.city|escape }}</a></td> <td class="name">{{r.hospital.name|escape}}</td>  <td class="type">{{ r.blood.type|escape }}</td> <td class="patient">{{ r.patient_name|escape }}</td>   <td class="contact">{{ r.phone_number|escape}}</td>
+					<td class="city"><a href="{{curr_url}}&city={{ r.hospital.city|escape }}">{{ r.hospital.city|escape }}</a></td>
+					<td class="name">{{r.hospital.name|escape}}</td> 
+					<td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.type|escape }}">{{ r.blood.type|escape }}</a></td> 
+					<td class="patient">{{ r.patient_name|escape }}</td>  
+					<td class="contact">{{ r.phone_number|escape}}</td>
+					<td class="extra">extra extra extra</td>
                                   </tr>
                                   {% endfor %}
                               {% endfor %}
                             </tbody>
                          </table>
 
-                            {% endif %}
+			 {% endif %}
                         {% endif %}
                         
                         {% if hospital_city %}
                             {% if hospital_name %}
                                 <h2>Acil Kan Duyurulari ( {{ hospital_city }} {{ hospital_name }} Hastahanesi )</h2>
                         <table id="results" class="main" cellspacing="0">
+	  		      <thead>                           
+				    <tr>
+					<th scope="col" abbr="Sehir">Şehir</th>
+					<th scope="col" abbr="Hastahane">Hastahane</th>
+					<th scope="col" abbr="Kan Grubu">Kan</th>
+					<th scope="col" abbr="Hasta">Hasta</th>
+					<th scope="col" abbr="Telefon">Telefon</th>
+					<th scope="col"></th>
+				    </tr>
+	                      </thead>
                               <tbody>
 
                                 {% for hosp in hospitals %}
                                     {% for r in hosp.requests %}
                                     <tr id="request">
-                                        <td class="city">{{ r.hospital.city|escape }}</td> <td class="name">{{ r.hospital.name|escape }}</td> <td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.type|escape }}">{{ r.blood.type|escape }}</a></td> <td class="patient">{{ r.patient_name|escape }}</td>   <td class="contact">{{ r.phone_number|escape}}</td>
+					<td class="city">{{ r.hospital.city|escape }}</td>
+					<td class="name">{{ r.hospital.name|escape }}</td>
+					<td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.type|escape }}">{{ r.blood.type|escape }}</a></td>
+					<td class="patient">{{ r.patient_name|escape }}</td> 
+					<td class="contact">{{ r.phone_number|escape}}</td>
+					<td class="extra">extra extra extra</td>
                                     </tr>
                                     {% endfor %}
                                 {% endfor %}
@@ -104,29 +157,111 @@
                             {% if hospital_city %}
                                 <h2>Acil Kan Duyurulari ( {{ hospital_city }} )</h2>
                                 <table id="results" class="main" cellspacing="0">
+	  		      <thead>                           
+				    <tr>
+					<th scope="col" abbr="Sehir">Şehir</th>
+					<th scope="col" abbr="Hastahane">Hastahane</th>
+					<th scope="col" abbr="Kan Grubu">Kan</th>
+					<th scope="col" abbr="Hasta">Hasta</th>
+					<th scope="col" abbr="Telefon">Telefon</th>
+					<th scope="col"></th>
+				    </tr>
+	                      </thead>
                                   <tbody>
                                         {% for hosp in hospitals %}
                                           {% for r in hosp.requests %}
                                             <tr id="request">
-                                              <td class="city">{{ r.hospital.city|escape }}</td> <td class="name"><a href="{{curr_url}}&hospital={{ r.hospital.name|escape }}">{{r.hospital.name|escape}}</a></td> <td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.type|escape }}">{{ r.blood.type|escape }}</a></td> <td class="patient">{{ r.patient_name|escape }}</td>   <td class="contact">{{ r.phone_number|escape}}</td>
+						 <td class="city">{{ r.hospital.city|escape }}</td>
+						 <td class="name"><a href="{{curr_url}}&hospital={{ r.hospital.name|escape }}">{{r.hospital.name|escape}}</a></td>
+						 <td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.type|escape }}">{{ r.blood.type|escape }}</a></td> 
+						 <td class="patient">{{ r.patient_name|escape }}</td>
+						 <td class="contact">{{ r.phone_number|escape}}</td>
+						 <td class="extra">extra extra extra</td>
                                             </tr>
                                           {% endfor %}
                                          {% endfor %}
                                   </tbody>
                                  </table>
-   
+                            {% endif %}
                             {% endif %}
                         {% endif %}
-                     {% endif %}
+			{% endif %}
+
+
+		    <!--ONLY BLOOD FILTER-->
 
                      {% if filter_byblood %} 
+                              <h2>Acil Kan Duyurulari ( {{ blood_type }} Kan Grubu )</h2>
+			      <table id="results" class="main">
+		  		      <thead>                           
+					    <tr>
+						<th scope="col" abbr="Sehir">Şehir</th>
+						<th scope="col" abbr="Hastahane">Hastahane</th>
+						<th scope="col" abbr="Kan Grubu">Kan</th>
+						<th scope="col" abbr="Hasta">Hasta</th>
+						<th scope="col" abbr="Telefon">Telefon</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
                          {% for blood in bloods %}
-                              <h2>Acil Kan Duyurulari ( {{ blood.type }} Kan Grubu )</h2>
-                            {% for r in blood.requests %}
-                            <pre><a href="{{curr_url}}&hospital={{ r.hospital.name|escape }}">{{ r.hospital.name|escape }}</a> <a href="{{curr_url}}&city={{ r.hospital.city|escape }}">{{ r.hospital.city|escape}}</a>  {{ r.blood.type|escape }} {{ r.patient_name|escape }}   {{ r.phone_number|escape}}</pre>
-                            {% endfor %}
-                        {% endfor %}
-                     {% endif %}
+					{% for r in blood.requests %}
+					    <tr id="request">
+						<td class="city"><a href="{{curr_url}}&city={{ r.hospital.city|escape }}">{{ r.hospital.city|escape }}</a></td>
+						<td class="hospital"><a href="{{curr_url}}&hospital={{ r.hospital.name|escape }}">{{ r.hospital.name|escape}}</a></td>
+						<td class="type">{{ r.blood.type|escape }}</td>
+						<td class="patient">{{ r.patient_name|escape }}</td>
+						<td class="contact">{{ r.phone_number|escape}}</td>
+						<td class="extra">extra extra extra</td>
+					    </tr>
+					{% endfor %}
+				</tbody>
+				</table>
+			    {% endfor %}
+		    {% endif %}
+
+			    <!--HOSPITAL AND BLOOD FILTER-->
+		    {% if filter_byhospital %} 
+				{% if filter_byblood %}
+				    {% if not hospital_city %}
+					    {% if hospital_name %}
+
+					    <h2>Acil Kan Duyurulari ( {{ hospital_name }} Hastahanesi {{blood_type}} Kan Grubu )</h2>
+				<table id="results" class="main" cellspacing="0">
+				      <thead>                           
+					    <tr>
+						    <th scope="col" abbr="Sehir">Şehir</th>
+						    <th scope="col" abbr="Hastahane">Hastahane</th>
+						    <th scope="col" abbr="Kan Grubu">Kan</th>
+						    <th scope="col" abbr="Hasta">Hasta</th>
+						    <th scope="col" abbr="Telefon">Telefon</th>
+						    <th scope="col"></th>
+					    </tr>
+				      </thead>
+				      <tbody>
+				    {% for blood in bloods %}
+					{% for r in blood.requests %}
+					  <tr id="request">
+						<td class="city"><a href="{{curr_url}}&city={{ r.hospital.city|escape }}">{{ r.hospital.city|escape }}</a></td>
+						<td class="name">{{r.hospital.name|escape}}</td> 
+						<td class="type">{{ r.blood.type|escape }}</td> 
+						<td class="patient">{{ r.patient_name|escape }}</td>  
+						<td class="contact">{{ r.phone_number|escape}}</td>
+						<td class="extra">extra extra extra</td>
+					</tr>
+				       {% endfor %}
+				    {% endfor %}
+				    </tbody>
+				 </table>
+
+				 {% endif %}
+				{% endif %}
+				
+			       
+				{% endif %}
+				{% endif %}
+
+
              </div><!--close posts-->
             </div><!--close yui-first-->
             <div class="yui-u">
