@@ -1,7 +1,8 @@
 {% include "header.html" %}
 
 <body>
-<div id="doc2" class="yui-t7">
+<div id="doc4" class="yui-t7">
+   <div id="wrapper">
 	<div id="hd">
 		<div id="header">
 			<ul id="menu">
@@ -62,6 +63,7 @@
 					    <th scope="col" abbr="Hasta">Hasta</th>
 					    <th scope="col" abbr="Telefon">Telefon</th>
 					    <th scope="col"></th>
+					    <th scope="col"></th>
 				    </tr>
 	                      </thead>
                               <tbody>
@@ -70,9 +72,10 @@
                               <tr id="request">
                               <td class="city"><a href="?city={{ req.hospital.city|escape }}">{{ req.hospital.city|escape }}</a></td> 
                               <td class="hospital"><a href="?hospital={{ req.hospital.name|escape }}">{{ req.hospital.name|escape}}</a></td>   
-                              <td class="type"><a href="?bloodtype={{ req.blood.type|escape}}">{{ req.blood.type|escape }}</a></td> 
+                              <td class="type"><a href="?bloodtype={{ req.blood.key|escape}}">{{ req.blood.type|escape }}</a></td> 
 			      <td class="patient">{{ req.patient_name|escape }}</td> <td class="contact">{{ req.phone_number|escape}}</td>
-			      <td class="extra">extra extra extra</td>
+                  <td class="permalink"><a href="/acilkan?id={{req.key}}">Link</a></td>
+                  <td class="extra"><a href="/twit?link=acilkan?id={{req.key}}"></a></td>
                               
                               </tr>
                             {% endfor %}
@@ -141,7 +144,7 @@
                                     <tr id="request">
 					<td class="city">{{ r.hospital.city|escape }}</td>
 					<td class="name">{{ r.hospital.name|escape }}</td>
-					<td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.type|escape }}">{{ r.blood.type|escape }}</a></td>
+					<td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.key|escape }}">{{ r.blood.type|escape }}</a></td>
 					<td class="patient">{{ r.patient_name|escape }}</td> 
 					<td class="contact">{{ r.phone_number|escape}}</td>
 					<td class="extra">extra extra extra</td>
@@ -173,7 +176,7 @@
                                             <tr id="request">
 						 <td class="city">{{ r.hospital.city|escape }}</td>
 						 <td class="name"><a href="{{curr_url}}&hospital={{ r.hospital.name|escape }}">{{r.hospital.name|escape}}</a></td>
-						 <td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.type|escape }}">{{ r.blood.type|escape }}</a></td> 
+						 <td class="type"><a href="{{curr_url}}&bloodtype={{ r.blood.key|escape }}">{{ r.blood.type|escape }}</a></td> 
 						 <td class="patient">{{ r.patient_name|escape }}</td>
 						 <td class="contact">{{ r.phone_number|escape}}</td>
 						 <td class="extra">extra extra extra</td>
@@ -192,7 +195,7 @@
 
                      {% if filter_byblood %} 
                         {% if not filter_byhospital %}
-                              <h2>Acil Kan Duyurulari ( {{ blood_type }} Kan Grubu )</h2>
+                              <h2>Acil Kan Duyurulari ( {{ bloods.type }} Kan Grubu )</h2>
 			      <table id="results" class="main">
 		  		      <thead>                           
 					    <tr>
@@ -205,8 +208,8 @@
 					</tr>
 				</thead>
 				<tbody>
-                         {% for blood in bloods %}
-					{% for r in blood.requests %}
+                   
+					{% for r in bloods.requests %}
 					    <tr id="request">
 						<td class="city"><a href="{{curr_url}}&city={{ r.hospital.city|escape }}">{{ r.hospital.city|escape }}</a></td>
 						<td class="hospital"><a href="{{curr_url}}&hospital={{ r.hospital.name|escape }}">{{ r.hospital.name|escape}}</a></td>
@@ -218,7 +221,7 @@
 					{% endfor %}
 				</tbody>
 				</table>
-			    {% endfor %}
+
 		    {% endif %}
 		    {% endif %}
 
@@ -228,7 +231,7 @@
 				    {% if not hospital_city %}
 					    {% if hospital_name %}
 
-					    <h2>Acil Kan Duyurulari ( {{ hospital_name }} Hastahanesi {{blood_type}} Kan Grubu )</h2>
+					    <h2>Acil Kan Duyurulari ( {{ hospital_name }} Hastahanesi {{bloods.type}} Kan Grubu )</h2>
 				<table id="results" class="main" cellspacing="0">
 				      <thead>                           
 					    <tr>
@@ -260,7 +263,7 @@
                 {% if hospital_city %}
 					    {% if not hospital_name %}
 			       
-					    <h2>Acil Kan Duyurulari ( {{ hospital_city }} {{blood_type}} Kan Grubu )</h2>
+					    <h2>Acil Kan Duyurulari ( {{ hospital_city }} {{bloods.type}} Kan Grubu )</h2>
 				<table id="results" class="main" cellspacing="0">
 				      <thead>                           
 					    <tr>
@@ -291,7 +294,7 @@
                   {% if hospital_city %}
 					    {% if hospital_name %}
 			       
-                        <h2>Acil Kan Duyurulari ( {{ hospital_city }} {{hospital_name}} Hastahanesi {{blood_type}} Kan Grubu )</h2>
+                        <h2>Acil Kan Duyurulari ( {{ hospital_city }} {{hospital_name}} Hastahanesi {{bloods.type}} Kan Grubu )</h2>
 				<table id="results" class="main" cellspacing="0">
 				      <thead>                           
 					    <tr>
@@ -332,6 +335,7 @@
         </div><!--close yui-ge-->
 	</div> <!--close bd-->
    <div id="ft">Footer is here.</div>
+</div>
 </div> <!--close doc2-->
 </body>
 

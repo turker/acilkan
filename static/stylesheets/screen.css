@@ -31,14 +31,16 @@ ul#menu li a.active, ul#menu li a:hover {
 }
 
 
-/* Page */
-
-#page { margin: 0 auto; width: 950px; border: 2px solid #eee;}
-
 /* Body
 -------------------------------------------------------------- */
 
-#body { margin-top: 20px; }
+body { 
+    /*background: #ECECEC url("images/bigbg.jpg") repeat-y scroll center top !important; */
+}
+
+#wrapper {
+    background: #FFFFFF;
+}
 
 /* Form
 --------------------------------------------------------------*/

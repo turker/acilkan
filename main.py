@@ -21,6 +21,8 @@ import logging
 import os
 import re
 import time
+import urllib
+ 
 
 import wsgiref.handlers
 from google.appengine.api import users
@@ -29,7 +31,6 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import memcache
 
 import model
-
 
 class Utility():
     def parseContent(self,request):
@@ -139,13 +140,28 @@ class Utility():
             if blood_bytype is not None:
                 return blood_bytype
             else:
-                blood_bytype = model.Blood.all().filter('type = ', blood_type)
+                blood_bytype = db.get(db.Key(blood_type))
+                #blood_bytype = model.Blood.all().filter('type = ', blood_type)
                 if not memcache.add("blood_bytype", blood_bytype, 10):
                     logging.error("Memcache set failed in get_blood.")
                 return blood_bytype
         else:
             bloods = model.Blood.all()
             return bloods.fetch(10)
+
+    def postToTwitter(self,message):
+        http = httplib.Http()
+        response = http.request(
+                "http://twitter.com/statuses/update.xml", 
+                "POST", 
+                urllib.urlencode({"status": msg})
+                )
+        if response:
+            print "Success"
+        else:
+            print "error updating"
+
+
 
 class AboutHandler(webapp.RequestHandler):
     pass
@@ -194,18 +210,17 @@ class MainHandler(webapp.RequestHandler):
                 namefilter = True
             if hospital_city is not '':
                 cityfilter = True
-            for b in bloods:
-                for r in b.requests:
-                    if (namefilter) & (cityfilter):
-                        if r.hospital.name == hospital_name:
-                            if r.hospital.city == hospital_city:
-                                    filteredrequest.append(r)
-                    if (not namefilter) & (cityfilter):
+            for r in bloods.requests:
+                if (namefilter) & (cityfilter):
+                    if r.hospital.name == hospital_name:
                         if r.hospital.city == hospital_city:
-                            filteredrequest.append(r)
-                    if (namefilter) & (not cityfilter):
-                        if r.hospital.name == hospital_name:
-                            filteredrequest.append(r)
+                                filteredrequest.append(r)
+                if (not namefilter) & (cityfilter):
+                    if r.hospital.city == hospital_city:
+                        filteredrequest.append(r)
+                if (namefilter) & (not cityfilter):
+                    if r.hospital.name == hospital_name:
+                        filteredrequest.append(r)
 
         reqs = util.get_requests()
         curr_url = self.request.url 
@@ -227,6 +242,28 @@ class MainHandler(webapp.RequestHandler):
 
         path = os.path.join(os.path.dirname(__file__), 'templates/index.html')
         self.response.out.write(template.render(path, template_values))
+
+class ShowRequest(webapp.RequestHandler):
+    def get(self):
+        request_key = self.request.get('id')
+        request = db.get(db.Key(request_key))
+        curr_url = self.request.uri
+        template_values = {
+            'title': 'Acil Kan Duyurularinda Ne Durum?',
+            'curr_url': curr_url,
+            'request': request,
+            }
+
+        path = os.path.join(os.path.dirname(__file__), 'templates/acilkan.html')
+        self.response.out.write(template.render(path, template_values))
+
+class TwitterHandler(webapp.RequestHandler):
+    def get(self):
+        url = self.request.get('link')
+        msg = "Testing " + url
+        util = Utility()
+        util.postToTwitter(msg)
+        self.redirect('/')
 
 class NewRequestHandler(webapp.RequestHandler):
     def post(self):
@@ -257,6 +294,8 @@ def main():
     application = webapp.WSGIApplication([('/', MainHandler),
                                           ('/about', AboutHandler),
                                           ('/duyuru', NewRequestHandler),
+                                          ('/acilkan', ShowRequest),
+                                          ('/twit', TwitterHandler),
                                          ],
                                          debug=True)
     wsgiref.handlers.CGIHandler().run(application)
