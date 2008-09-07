@@ -87,7 +87,7 @@ div#patient_name,
 div#phone_number {
   position:relative;
   float:left;
-  margin-right:10px;
+  margin-right:3px;
 }
 
 div#submit {
@@ -102,7 +102,7 @@ label.overlabel {
   display: block;
   color:#8F0000;
   font-size: 1.1em;
-  font-weight: bold;
+  font-weight: normal;
   padding-bottom: 3px;
 }
 

@@ -2,8 +2,12 @@
   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="static/jquery-1.2.6.pack.js"></script> 
-<script type="text/javascript" src="static/jquery.form.js"></script> 
+<script type="text/javascript" src="static/js/jquery-1.2.6.pack.js"></script> 
+<script type="text/javascript" src="static/js/jquery.form.js"></script> 
+<script src="static/js/lib/jquery.bgiframe.js" type="text/javascript"></script>
+<script src="static/js/lib/jquery.dimensions.js" type="text/javascript"></script>
+<script src="static/js/jquery.tooltip.pack.js" type="text/javascript"></script>
+
 <link type="text/css" rel="stylesheet" href="static/stylesheets/reset-fonts-grids.css">
 <link type="text/css" rel="stylesheet" href="static/stylesheets/screen.css">
 <script type="text/javascript"> 
@@ -26,6 +30,8 @@
             }; 
         // bind 'myForm' and provide a simple callback function 
         $('#duyuru').ajaxForm(options); 
+        $('#field_duyuru *').tooltip();
+
     }); 
 </script> 
 
