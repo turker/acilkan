@@ -5,12 +5,12 @@
 /* Header
 -------------------------------------------------------------- */
 
-#header { background: #820505 no-repeat; padding: 8px;}
-#header h1 a {color: #fff; font-size: 1.5em; text-decoration: none;}
+#header { /*background: #820505 no-repeat;*/ padding: 8px;}
+#header h1 a {color: #555; font-size: 1.5em; text-decoration: none;}
 
 ul#menu {
 	margin:0 10em 0 0;
-       	padding:3px;
+	padding:3px;
 	position:absolute;
 	right:0px;
 }
@@ -20,7 +20,7 @@ ul#menu li {
 }
 ul#menu li a {
 	text-decoration:none;
-	color:#fff;
+	color:#555;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:10px;
 	font-weight:bold;
@@ -30,6 +30,31 @@ ul#menu li a.active, ul#menu li a:hover {
 	color:#211e1e;
 }
 
+/* Sub Nav Bar
+-------------------------------------------------------------- */
+#subnavbar {
+	background-color: #EDEDED;
+	margin: 0px 0px 10px 0px;
+	padding: 10px;
+}
+
+#subnavbar a {
+	font-family: "Helvetica";
+	font-size: 1.1em;
+	color: #8F0000;
+}
+
+#subnavbar ul {
+	background-color: #EDEDED;
+	
+}
+
+#subnavbar ul li {
+	float: left;
+	display: inline;	
+	position:relative;
+	margin-right: 10px;
+}
 
 /* Body
 -------------------------------------------------------------- */
@@ -88,9 +113,9 @@ input:focus {
 /* Posts 
 ----------------------------------------------------------*/
 .posts h2 {
-    padding: 0px 0px 10px 8px;
+    padding: 5px 0 5px 8px;
     color: #8F0000;
-    font-size: 1.5em;
+    font-size: 1.1em;
 }
 
 
@@ -108,6 +133,7 @@ input:focus {
 	border-collapse: collapse;
 	text-align: left;
 	margin: 0px 0px 40px 0;
+	float: left;
 }
 #results th
 {
