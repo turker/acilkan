@@ -1,0 +1,63 @@
+{% include "header.html" %}
+
+<body>
+<div id="doc2" class="yui-t7">
+	<div id="hd">
+		<div id="header">
+			<ul id="menu">
+				<li><a href="{{url}}">{{url_linktext}}</a></li>
+				<li><a href="/hakkinda">Hakkında</a></li>
+				<li><a href="/blog">Blog</a></li>
+			</ul>
+			<h1><a href=".">Acil Kan Duyuruları</a></h1>
+		</div>
+	</div>
+    <div id="bd">
+	    <div class="yui-g">
+	
+    	</div><!--close yui-g-->
+
+        <div class="yui-ge">
+            <div class="yui-u first">
+             <div class="posts">
+                 <p>{{request.created}} tarihinde yapilan acil kan duyurusu</p>
+                 <table id="results" class="main" cellspacing="0">
+	  		      <thead>                           
+				    <tr>
+					    <th scope="col" abbr="Sehir">Şehir</th>
+					    <th scope="col" abbr="Hastahane">Hastahane</th>
+					    <th scope="col" abbr="Kan Grubu">Kan</th>
+					    <th scope="col" abbr="Hasta">Hasta</th>
+					    <th scope="col" abbr="Telefon">Telefon</th>
+					    <th scope="col"></th>
+				    </tr>
+	                      </thead>
+                              <tbody>
+
+                     <tr id="request">
+                              <td class="city"><a href="?city={{ request.hospital.city|escape }}">{{ request.hospital.city|escape }}</a></td> 
+                              <td class="hospital"><a href="?hospital={{ request.hospital.name|escape }}">{{ request.hospital.name|escape}}</a></td>   
+                              <td class="type"><a href="?bloodtype={{ request.blood.type|escape}}">{{ request.blood.type|escape }}</a></td> 
+			      <td class="patient">{{ request.patient_name|escape }}</td> <td class="contact">{{ request.phone_number|escape}}</td>
+                  <td class="extra">extra extra</td>
+                              
+                              </tr>
+                             </tbody>
+                         </table>
+
+
+
+             </div><!--close posts-->
+            </div><!--close yui-first-->
+            <div class="yui-u">
+    	        <p>YOUR DATA GOES HERE</p>
+            </div><!--close yui-u-->
+        </div><!--close yui-ge-->
+	</div> <!--close bd-->
+   <div id="ft">Footer is here.</div>
+</div> <!--close doc2-->
+</body>
+
+
+
+
