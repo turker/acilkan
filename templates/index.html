@@ -1,7 +1,7 @@
 {% include "header.html" %}
 
 <body>
-<div id="doc4" class="yui-t7">
+<div id="doc2" class="yui-t7">
    <div id="wrapper">
 	<div id="hd">
 		<div id="header">
@@ -22,22 +22,27 @@
                       <div id="hospital_name">
                         <label for="hospital_name" class="overlabel">Hastahane</label>
 						<input id="hospital_name" title="Hastahane Ismi. Hastahanesi ekini yazmayiniz.Ornek: Devlet Hastahanesi icin sadece Devlet yazmaniz yeterli." tabIndex="1" type="text" name="hospital_name" />
+                        <label for="hospital_name" class="bottomlabel">Örnek: Devlet</label>
                       </div>
                        <div id="hospital_city">
                           <label for="hospital_city" class="overlabel">Şehir</label>
                           <input type="text" title="Hastahanenin Bulundugu Sehir" id="hospital_city" name="hospital_city" tabIndex="2" />  
+                          <label for="hospital_city" class="bottomlabel">Örnek: Ankara </label>
                        </div>
                        <div id="blood_type">
                           <label for="blood_type" class="overlabel">Kan Grubu</label>
                           <input type="text" title="Aranan Kan Grubu" id="kan_grubu" name="blood_type" size="10" maxlength="3" tabIndex="3" />  
+						  <label for="blood_type" class="bottomlabel">Örnek: AB-, 0+</label>
                        </div>
                        <div id="patient_name">
                           <label for="patient_name" class="overlabel">Hasta Adı</label>
                           <input type="text" title="Hasta Ismi" id="hasta_ismi" name="patient_name" tabIndex="4" />  
+                          <label for="phone_number" class="bottomlabel">Örnek: İsim Soyisim</label>
                        </div>
                        <div id="phone_number">
                           <label for="phone_number" class="overlabel">Telefon No</label>
                           <input type="text" title="Size ya da gerekli yere ulasilabilecek telefon numarasi." id="telefon_no" name="phone_number" tabIndex="5" />  
+                          <label for="phone_number" class="bottomlabel">Örnek.: 2163456789</label>
                        </div>
                        <div id="submit">
                           <input type="submit" name="submit" value="Duyur" tabIndex="6">
@@ -47,14 +52,13 @@
             </div><!--close duyuruform-->
     	</div><!--close yui-g-->
 
-        <div class="yui-ge">
-            <div class="yui-u first">
+        <div class="yui-g">
 				<div class="posts">
 		    <!-- NO FILTER-->
                      {% if not filter_byhospital %}
                         {% if not filter_byblood %}     
 						<div id="subnavbar">
-								<pre><a href=".">Tum Duyurular</a></pre>
+								<pre><a href=".">Tüm Duyurular</a></pre>
 						</div>
                         <table id="results" class="main" cellspacing="0">
 	  		      <thead>                           
@@ -93,7 +97,7 @@
                             {% if not hospital_city %}
 				    {% if hospital_name %}
 					<div id="subnavbar">	
-						<pre><a href=".">Tum Duyurular</a> | <a href="{{curr_url}}">{{ hospital_name }} Hastahanesi</a></pre>
+						<pre><a href=".">Tüm Duyurular</a> | <a href="{{curr_url}}">{{ hospital_name }} Hastahanesi</a></pre>
 					</div>
                         <table id="results" class="main" cellspacing="0">
 	  		      <thead>                           
@@ -129,7 +133,7 @@
                         {% if hospital_city %}
                             {% if hospital_name %}
 								<div id="subnavbar">
-									<pre><a href=".">Tum Duyurular</a> | <a href="./?city={{hospital_city}}">{{hospital_city}}</a> | <a href="./?hospital={{hospital_name}}">{{ hospital_name }} Hastahanesi</a></pre>
+									<pre><a href=".">Tüm Duyurular</a> | <a href="./?city={{hospital_city}}">{{hospital_city}}</a> | <a href="./?hospital={{hospital_name}}">{{ hospital_name }} Hastahanesi</a></pre>
 								</div>
 
                         <table id="results" class="main" cellspacing="0">
@@ -165,7 +169,7 @@
                          {% if not hospital_name %}
                             {% if hospital_city %}
 							<div id="subnavbar">
-								<pre><a href=".">Tum Duyurular</a> | <a href="./?city={{hospital_city}}">{{hospital_city}}</a></pre>
+								<pre><a href=".">Tüm Duyurular</a> | <a href="./?city={{hospital_city}}">{{hospital_city}}</a></pre>
 							</div>
                                 <table id="results" class="main" cellspacing="0">
 	  		      <thead>                           
@@ -204,7 +208,7 @@
                      {% if filter_byblood %} 
                         {% if not filter_byhospital %}
 								<div id="subnavbar">
-									<pre><a href=".">Tum Duyurular</a> | <a href="./?bloodtype={{bloods.key}}">{{bloods.type}} Kan Grubu</a></pre>
+									<pre><a href=".">Tüm Duyurular</a> | <a href="./?bloodtype={{bloods.key}}">{{bloods.type}} Kan Grubu</a></pre>
 								</div>
 			      <table id="results" class="main">
 		  		      <thead>                           
@@ -241,7 +245,7 @@
 				    {% if not hospital_city %}
 					    {% if hospital_name %}
 							<div id="subnavbar">
-								<pre><a href=".">Tum Duyurular</a> | <a href="./?hospital={{hospital_name}}">{{hospital_name}} Hastahanesi</a> | <a href="./?bloodtype={{bloods.key}}">{{bloods.type}} Kan Grubu</a></pre>
+								<pre><a href=".">Tüm Duyurular</a> | <a href="./?hospital={{hospital_name}}">{{hospital_name}} Hastahanesi</a> | <a href="./?bloodtype={{bloods.key}}">{{bloods.type}} Kan Grubu</a></pre>
 							</div>
 
 				<table id="results" class="main" cellspacing="0">
@@ -275,7 +279,7 @@
                 {% if hospital_city %}
 					    {% if not hospital_name %}
 							<div id="subnavbar">
-								<pre><a href=".">Tum Duyurular</a> | <a href="./?city={{hospital_city}}">{{hospital_city}}</a> | <a href="./?bloodtype={{bloods.key}}">{{bloods.type}} Kan Grubu</a></pre>
+								<pre><a href=".">Tüm Duyurular</a> | <a href="./?city={{hospital_city}}">{{hospital_city}}</a> | <a href="./?bloodtype={{bloods.key}}">{{bloods.type}} Kan Grubu</a></pre>
 							</div>
 			       
 				<table id="results" class="main" cellspacing="0">
@@ -308,7 +312,7 @@
                   {% if hospital_city %}
 					    {% if hospital_name %}
 							<div id="subnavbar">
-								<pre><a href=".">Tum Duyurular</a> | <a href="./?city={{hospital_city}}">{{hospital_city}}</a> | <a href="./?hospital={{hospital_name}}">{{hospital_name}} Hastahanesi</a> | <a href="./?bloodtype={{bloods.key}}">{{bloods.type}} Kan Grubu</a></pre>
+								<pre><a href=".">Tüm Duyurular</a> | <a href="./?city={{hospital_city}}">{{hospital_city}}</a> | <a href="./?hospital={{hospital_name}}">{{hospital_name}} Hastahanesi</a> | <a href="./?bloodtype={{bloods.key}}">{{bloods.type}} Kan Grubu</a></pre>
 							</div>
 			       
 				<table id="results" class="main" cellspacing="0">
@@ -344,11 +348,22 @@
 
 
              </div><!--close posts-->
-            </div><!--close yui-first-->
-            <div class="yui-u">
-    	        <p>YOUR DATA GOES HERE</p>
-            </div><!--close yui-u-->
-        </div><!--close yui-ge-->
+        </div><!--close yui-g-->
+
+	<div class="yui-gb">
+        <div class="yui-u first">
+			BOTTOM 1	
+	    </div>
+        <div class="yui-u">
+			BOTTOM 2
+	        </div>
+        <div class="yui-u">
+			BOTTOM 3
+	        </div>
+    </div>
+	
+
+
 	</div> <!--close bd-->
    <div id="ft">Footer is here.</div>
 </div>

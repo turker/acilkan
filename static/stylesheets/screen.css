@@ -9,7 +9,7 @@
 #header h1 a {color: #555; font-size: 1.5em; text-decoration: none;}
 
 ul#menu {
-	margin:0 10em 0 0;
+	margin:0 15em 0 0;
 	padding:3px;
 	position:absolute;
 	right:0px;
@@ -104,6 +104,13 @@ label.overlabel {
   font-size: 1.1em;
   font-weight: normal;
   padding-bottom: 3px;
+}
+label.bottomlabel {
+  display: block;
+  color:#AAA;
+  font-size: 0.9em;
+  font-weight: normal;
+  padding: 4px 0 0 2px;
 }
 
 input:focus {
