@@ -28,7 +28,6 @@ import wsgiref.handlers
 from google.appengine.api import users
 from google.appengine.ext import db, webapp
 from google.appengine.ext.webapp import template
-from google.appengine.api import memcache
 
 import model
 import utils
@@ -160,6 +159,13 @@ class NewRequestHandler(webapp.RequestHandler):
                                             req_patient_name, req_phone_number)
         self.redirect('/')
 
+class PersonalPageHandler(webapp.RequestHandler):
+    def get(self):
+        if users.get_current_user():
+            user = users.get_current_user()
+
+class ProfileHandler(webapp.RequestHandler):
+    pass
 
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
@@ -167,6 +173,8 @@ def main():
                                           ('/duyuru', NewRequestHandler),
                                           ('/acilkan', ShowRequest),
                                           ('/twit', TwitterHandler),
+                                          ('/kisisel', PersonalPageHandler),
+                                          ('/profil', ProfileHandler),
                                          ],
                                          debug=True)
     wsgiref.handlers.CGIHandler().run(application)
