@@ -58,3 +58,13 @@ class BloodRequest(db.Model):
     
     #Request status
     is_served = db.BooleanProperty()
+
+class UserPrefs(db.Model):
+    user = db.UserProperty()
+    city = db.StringProperty()
+    bloodtype = db.StringProperty()
+    blood = db.ReferenceProperty(Blood, collection_name = "users")
+    preferredHospital = db.StringProperty()
+
+
+
