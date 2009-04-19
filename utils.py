@@ -150,3 +150,12 @@ class Utility():
         else:
             print "error updating"
 
+    def calculateMostHospital(self):
+        nbreqs = []
+        hospitals = model.Hospital.all().fetch(1000)
+        for hosp in hospitals:
+            reqs = hosp.requests
+            print reqs
+
+
+

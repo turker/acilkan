@@ -28,6 +28,7 @@ import wsgiref.handlers
 from google.appengine.api import users
 from google.appengine.ext import db, webapp
 from google.appengine.ext.webapp import template
+from django.core.paginator import ObjectPaginator, InvalidPage
 
 import model
 import utils
@@ -93,6 +94,8 @@ class MainHandler(webapp.RequestHandler):
                         filteredrequest.append(r)
 
         reqs = util.get_requests()
+        #mosthospitalreq = util.calculateMostHospital()
+        #mostbloodreq = util.calculateMostBlood()
         curr_url = self.request.url 
         template_values = {
             'title': 'Acil Kan Duyurularinda Ne Durum?',
